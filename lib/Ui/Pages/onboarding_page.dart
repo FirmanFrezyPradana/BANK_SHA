@@ -1,4 +1,6 @@
 import 'package:bank_sha/Shared/theme.dart';
+import 'package:bank_sha/Ui/Pages/sign_in_page.dart';
+import 'package:bank_sha/Ui/Widgets/Buttons.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -94,44 +96,22 @@ class _onboardingPageState extends State<onboardingPage> {
                   currentIndex == 2
                       ? Column(
                           children: [
-                            SizedBox(
-                              width: double.infinity,
-                              height: 50,
-                              child: TextButton(
-                                onPressed: () {
-                                  carouselController.nextPage();
-                                },
-                                style: TextButton.styleFrom(
-                                  backgroundColor: purpleColor,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(
-                                    56,
-                                  )),
-                                ),
-                                child: Text(
-                                  'Get Started',
-                                  style: whiteTetxtStyle.copyWith(
-                                    fontSize: 16,
-                                    fontWeight: bold,
-                                  ),
-                                ),
-                              ),
+                            CostomComponenButton(
+                              title: 'Get Started',
+                              onPressed: () {
+                                Navigator.pushNamedAndRemoveUntil(
+                                    context, '/sign_up', (route) => false);
+                              },
                             ),
                             const SizedBox(
                               height: 20,
                             ),
-                            SizedBox(
-                              width: double.infinity,
-                              height: 50,
-                              child: TextButton(
-                                onPressed: () {},
-                                child: Text(
-                                  'Sign In',
-                                  style: grayTetxtStyle.copyWith(
-                                    fontSize: 16,
-                                  ),
-                                ),
-                              ),
+                            CostomComponenText(
+                              title: 'Sign In',
+                              onPressed: () {
+                                Navigator.pushNamedAndRemoveUntil(
+                                    context, '/sign_in', (route) => false);
+                              },
                             )
                           ],
                         )
@@ -177,28 +157,12 @@ class _onboardingPageState extends State<onboardingPage> {
                               ),
                             ),
                             const Spacer(),
-                            SizedBox(
+                            CostomComponenButton(
+                              title: 'Continue',
                               width: 150,
-                              height: 50,
-                              child: TextButton(
-                                onPressed: () {
-                                  carouselController.nextPage();
-                                },
-                                style: TextButton.styleFrom(
-                                  backgroundColor: purpleColor,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(
-                                    56,
-                                  )),
-                                ),
-                                child: Text(
-                                  'Continue',
-                                  style: whiteTetxtStyle.copyWith(
-                                    fontSize: 16,
-                                    fontWeight: bold,
-                                  ),
-                                ),
-                              ),
+                              onPressed: () {
+                                carouselController.nextPage();
+                              },
                             )
                           ],
                         )
