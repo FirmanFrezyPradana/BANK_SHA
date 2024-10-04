@@ -71,3 +71,34 @@ class CostomComponenText extends StatelessWidget {
     );
   }
 }
+
+class CostomInputButton extends StatelessWidget {
+  final String number;
+  final VoidCallback? onTab;
+  const CostomInputButton({
+    super.key,
+    required this.number,
+    required this.onTab,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTab,
+      child: Container(
+        width: 60,
+        height: 60,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: numberBackgroundColor,
+        ),
+        child: Center(
+          child: Text(
+            number,
+            style: whiteTetxtStyle.copyWith(fontSize: 22, fontWeight: semiBold),
+          ),
+        ),
+      ),
+    );
+  }
+}

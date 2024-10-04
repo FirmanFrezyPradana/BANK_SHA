@@ -11,7 +11,6 @@ class homePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: lightBackgroundColor,
       bottomNavigationBar: BottomAppBar(
         color: whiteColor,
         elevation: 0,
@@ -80,7 +79,7 @@ class homePage extends StatelessWidget {
           horizontal: 24,
         ),
         children: [
-          buildProfile(),
+          buildProfile(context),
           bildWaletCart(),
           buildLevel(),
           buildService(),
@@ -92,7 +91,7 @@ class homePage extends StatelessWidget {
     );
   }
 
-  Widget buildProfile() {
+  Widget buildProfile(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(
         top: 40,
@@ -118,27 +117,32 @@ class homePage extends StatelessWidget {
               )
             ],
           ),
-          Container(
-            width: 60,
-            height: 60,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: AssetImage('assets/img_profile.png'),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/profilePage');
+            },
+            child: Container(
+              width: 60,
+              height: 60,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: AssetImage('assets/img_profile.png'),
+                ),
               ),
-            ),
-            child: Align(
-              alignment: Alignment.topRight,
-              child: Container(
-                width: 16,
-                height: 16,
-                decoration: const BoxDecoration(
-                    shape: BoxShape.circle, color: Colors.white),
-                child: Center(
-                  child: Icon(
-                    Icons.check_circle,
-                    color: greenColor,
-                    size: 14,
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Container(
+                  width: 16,
+                  height: 16,
+                  decoration: const BoxDecoration(
+                      shape: BoxShape.circle, color: Colors.white),
+                  child: Center(
+                    child: Icon(
+                      Icons.check_circle,
+                      color: greenColor,
+                      size: 14,
+                    ),
                   ),
                 ),
               ),

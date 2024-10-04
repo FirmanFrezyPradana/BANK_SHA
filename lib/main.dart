@@ -1,5 +1,11 @@
+import 'package:bank_sha/Shared/theme.dart';
 import 'package:bank_sha/Ui/Pages/home_page.dart';
 import 'package:bank_sha/Ui/Pages/onboarding_page.dart';
+import 'package:bank_sha/Ui/Pages/pin_page.dart';
+import 'package:bank_sha/Ui/Pages/profile_edit_page.dart';
+import 'package:bank_sha/Ui/Pages/profile_edit_pin_page.dart';
+import 'package:bank_sha/Ui/Pages/profile_page.dart';
+import 'package:bank_sha/Ui/Pages/profile_succes.dart';
 import 'package:bank_sha/Ui/Pages/signUpSetKtpPage.dart';
 import 'package:bank_sha/Ui/Pages/signUpSetProflePage.dart';
 import 'package:bank_sha/Ui/Pages/signUpSuccesPage.dart';
@@ -18,6 +24,21 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner:
           false, //digunakan untuk menghilangkan baner di kiri pojok
+      theme: ThemeData(
+        scaffoldBackgroundColor: lightBackgroundColor,
+        appBarTheme: AppBarTheme(
+            backgroundColor: lightBackgroundColor,
+            elevation: 0,
+            centerTitle: true,
+            iconTheme: IconThemeData(
+              color: blackColor,
+            ),
+            titleTextStyle: blackTetxtStyle.copyWith(
+              fontSize: 20,
+              fontWeight: semiBold,
+            )),
+      ),
+
       routes: {
         '/': (context) => const SplashPage(),
         '/onboarding': (context) => const onboardingPage(),
@@ -27,6 +48,11 @@ class MyApp extends StatelessWidget {
         '/SignUpUpSetKtpPage': (context) => const SignUpUpSetKtpPage(),
         '/signUpSuccesPage': (context) => const signUpSuccesPage(),
         '/homePage': (context) => const homePage(),
+        '/profilePage': (context) => const ProfilePage(),
+        '/PinPage': (context) => const PinPage(),
+        '/ProfileEdit': (context) => const ProfileEdit(),
+        '/ProfileEditPin': (context) => const ProfileEditPin(),
+        '/ProfileSucces': (context) => const ProfileSucces()
       },
     );
   }

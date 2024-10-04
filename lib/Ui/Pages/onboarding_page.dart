@@ -26,7 +26,6 @@ class _onboardingPageState extends State<onboardingPage> {
   ];
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: lightBackgroundColor,
       body: Center(
         child: Column(
           children: [

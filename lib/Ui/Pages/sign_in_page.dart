@@ -9,7 +9,6 @@ class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: lightBackgroundColor,
         body: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           children: [
@@ -47,7 +46,6 @@ class SignInPage extends StatelessWidget {
                 children: [
                   // input email
                   CostumComponenForms(title: 'Email Addres'),
-
                   const SizedBox(
                     height: 16,
                   ),
