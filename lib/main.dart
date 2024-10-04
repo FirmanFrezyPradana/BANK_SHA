@@ -12,6 +12,9 @@ import 'package:bank_sha/Ui/Pages/signUpSuccesPage.dart';
 import 'package:bank_sha/Ui/Pages/sign_in_page.dart';
 import 'package:bank_sha/Ui/Pages/sign_up_page.dart';
 import 'package:bank_sha/Ui/Pages/splash_page.dart';
+import 'package:bank_sha/Ui/Pages/topUpAmount.dart';
+import 'package:bank_sha/Ui/Pages/topUp_page.dart';
+import 'package:bank_sha/Ui/Pages/topUp_succes_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -52,7 +55,10 @@ class MyApp extends StatelessWidget {
         '/PinPage': (context) => const PinPage(),
         '/ProfileEdit': (context) => const ProfileEdit(),
         '/ProfileEditPin': (context) => const ProfileEditPin(),
-        '/ProfileSucces': (context) => const ProfileSucces()
+        '/ProfileSucces': (context) => const ProfileSucces(),
+        '/TopUpPage': (context) => const TopUpPage(),
+        '/TopUpAmount': (context) => const TopUpAmount(),
+        '/TopUpSucces': (context) => const TopUpSucces()
       },
     );
   }
