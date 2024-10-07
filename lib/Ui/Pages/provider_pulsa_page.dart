@@ -3,15 +3,15 @@ import 'package:bank_sha/Ui/Widgets/Buttons.dart';
 import 'package:bank_sha/Ui/Widgets/bank_item.dart';
 import 'package:flutter/material.dart';
 
-class TopUpPage extends StatelessWidget {
-  const TopUpPage({super.key});
+class ProviderPulsaPage extends StatelessWidget {
+  const ProviderPulsaPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Top Up',
+          'Beli Data',
         ),
       ),
       body: ListView(
@@ -21,7 +21,7 @@ class TopUpPage extends StatelessWidget {
             height: 40,
           ),
           Text(
-            'Wallet',
+            'From Wallet',
             style: blackTetxtStyle.copyWith(fontSize: 16, fontWeight: semiBold),
           ),
           const SizedBox(
@@ -45,7 +45,7 @@ class TopUpPage extends StatelessWidget {
                         fontSize: 16, fontWeight: semiBold),
                   ),
                   Text(
-                    'Firman Frezy Pradana',
+                    'Balance: Rp 180.000.000',
                     style: grayTetxtStyle.copyWith(fontSize: 16),
                   )
                 ],
@@ -59,35 +59,32 @@ class TopUpPage extends StatelessWidget {
             'Select Bank',
             style: blackTetxtStyle.copyWith(fontSize: 16, fontWeight: semiBold),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(
+            height: 14,
+          ),
           const BankItem(
-            title: 'BANK BCA',
-            imageUrl: 'assets/img_bank_bca.png',
+            title: 'Telkomsel',
+            imageUrl: 'assets/img_provider_telkomsel.png',
+            time: 'Available',
             isSelected: true,
-            time: '50 mins',
           ),
           const BankItem(
-            title: 'Bank BNI',
-            imageUrl: 'assets/img_bank_bni.png',
-            time: '50 mins',
+            title: 'Indosat Ooredoo',
+            imageUrl: 'assets/img_provider_indosat.png',
+            time: 'Available',
           ),
           const BankItem(
-            title: 'Bank Mandiri',
-            imageUrl: 'assets/img_bank_mandiri.png',
-            time: '50 mins',
-          ),
-          const BankItem(
-            title: 'Bank OCBC',
-            imageUrl: 'assets/img_bank_ocbc.png',
-            time: '50 mins',
+            title: 'Singtel ID',
+            imageUrl: 'assets/img_provider_singtel.png',
+            time: 'Available',
           ),
           const SizedBox(
-            height: 12,
+            height: 135,
           ),
           CostomComponenButton(
             title: 'Continue',
             onPressed: () {
-              Navigator.pushNamed(context, '/TopUpAmount');
+              Navigator.pushNamed(context, '/ProviderPaketPage');
             },
           )
         ],

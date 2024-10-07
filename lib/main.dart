@@ -6,6 +6,9 @@ import 'package:bank_sha/Ui/Pages/profile_edit_page.dart';
 import 'package:bank_sha/Ui/Pages/profile_edit_pin_page.dart';
 import 'package:bank_sha/Ui/Pages/profile_page.dart';
 import 'package:bank_sha/Ui/Pages/profile_succes.dart';
+import 'package:bank_sha/Ui/Pages/provider_paket_page.dart';
+import 'package:bank_sha/Ui/Pages/provider_pulsa_page.dart';
+import 'package:bank_sha/Ui/Pages/provider_succes_page.dart';
 import 'package:bank_sha/Ui/Pages/signUpSetKtpPage.dart';
 import 'package:bank_sha/Ui/Pages/signUpSetProflePage.dart';
 import 'package:bank_sha/Ui/Pages/signUpSuccesPage.dart';
@@ -64,7 +67,10 @@ class MyApp extends StatelessWidget {
         '/TopUpSucces': (context) => const TopUpSucces(),
         '/TransferPage': (context) => const TransferPage(),
         '/TransferAmountPage': (context) => const TransferAmountPage(),
-        '/TransferSuccesPage': (context) => const TransferSuccesPage()
+        '/TransferSuccesPage': (context) => const TransferSuccesPage(),
+        '/ProviderPulsaPage': (context) => const ProviderPulsaPage(),
+        '/ProviderPaketPage': (context) => const ProviderPaketPage(),
+        '/ProviderSuccesPage': (context) => const ProviderSuccesPage(),
       },
     );
   }

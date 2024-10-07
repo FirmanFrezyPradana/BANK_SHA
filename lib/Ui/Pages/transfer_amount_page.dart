@@ -2,7 +2,6 @@ import 'package:bank_sha/Shared/theme.dart';
 import 'package:bank_sha/Ui/Widgets/Buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class TransferAmountPage extends StatefulWidget {
   const TransferAmountPage({super.key});

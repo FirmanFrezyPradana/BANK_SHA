@@ -4,11 +4,14 @@ import 'package:flutter/material.dart';
 class BankItem extends StatelessWidget {
   final String title;
   final String imageUrl;
+  final String time;
   final bool isSelected;
+
   const BankItem({
     super.key,
     required this.title,
     required this.imageUrl,
+    required this.time,
     this.isSelected = false,
   });
 
@@ -42,7 +45,7 @@ class BankItem extends StatelessWidget {
                 ),
               ),
               Text(
-                '50 mins',
+                time,
                 style: grayTetxtStyle.copyWith(
                   fontSize: 12,
                 ),

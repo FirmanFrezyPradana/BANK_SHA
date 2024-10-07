@@ -301,7 +301,12 @@ class homePage extends StatelessWidget {
                 HomeServiceItem(
                   iconUrl: 'assets/ic_more.png',
                   title: 'More',
-                  onTab: () {},
+                  onTab: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => const MoreDialog(),
+                    );
+                  },
                 )
               ],
             ),
@@ -449,6 +454,79 @@ class homePage extends StatelessWidget {
             ],
           )
         ],
+      ),
+    );
+  }
+}
+
+class MoreDialog extends StatelessWidget {
+  const MoreDialog({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      backgroundColor: Colors.transparent,
+      insetPadding: EdgeInsets.zero,
+      alignment: Alignment.bottomCenter,
+      content: Container(
+        height: 326,
+        width: MediaQuery.of(context).size.width,
+        padding: EdgeInsets.all(30),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(40),
+          color: lightBackgroundColor,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Do More With Us',
+              style:
+                  blackTetxtStyle.copyWith(fontSize: 16, fontWeight: semiBold),
+            ),
+            const SizedBox(
+              height: 13,
+            ),
+            Wrap(
+              spacing: 50,
+              runSpacing: 25,
+              children: [
+                HomeServiceItem(
+                  iconUrl: 'assets/ic_product_data.png',
+                  title: 'Data',
+                  onTab: () {
+                    Navigator.pushNamed(context, '/ProviderPulsaPage');
+                  },
+                ),
+                HomeServiceItem(
+                  iconUrl: 'assets/ic_product_water.png',
+                  title: 'Water',
+                  onTab: () {},
+                ),
+                HomeServiceItem(
+                  iconUrl: 'assets/ic_product_stream.png',
+                  title: 'Stream',
+                  onTab: () {},
+                ),
+                HomeServiceItem(
+                  iconUrl: 'assets/ic_product_movie.png',
+                  title: 'Movie',
+                  onTab: () {},
+                ),
+                HomeServiceItem(
+                  iconUrl: 'assets/ic_product_food.png',
+                  title: 'Food',
+                  onTab: () {},
+                ),
+                HomeServiceItem(
+                  iconUrl: 'assets/ic_product_travel.png',
+                  title: 'Travel',
+                  onTab: () {},
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
