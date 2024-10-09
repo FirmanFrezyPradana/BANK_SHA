@@ -1,3 +1,4 @@
+import 'package:bank_sha/Shared/shared_methods.dart';
 import 'package:bank_sha/Shared/theme.dart';
 import 'package:bank_sha/Ui/Widgets/Home_Tips_item.dart';
 import 'package:bank_sha/Ui/Widgets/Home_latest_transactin.dart';
@@ -197,7 +198,7 @@ class homePage extends StatelessWidget {
               ),
             ),
             Text(
-              'Rp 12.500',
+              formatCurrency(125000),
               style: whiteTetxtStyle.copyWith(
                 fontSize: 24,
                 fontWeight: semiBold,
@@ -237,7 +238,7 @@ class homePage extends StatelessWidget {
                 ),
               ),
               Text(
-                'of Rp 20.000',
+                'of ${formatCurrency(20000)}',
                 style: blackTetxtStyle.copyWith(
                   fontSize: 14,
                   fontWeight: semiBold,
@@ -340,34 +341,35 @@ class homePage extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               color: whiteColor,
             ),
-            child: const Column(
+            child: Column(
               children: [
                 HomeLatestTransactionItem(
-                    iconUrl: 'assets/ic_transaction_cat1.png',
-                    title: 'Top Up',
-                    time: 'Yesterday',
-                    value: '+ 450.000'),
+                  iconUrl: 'assets/ic_transaction_cat1.png',
+                  title: 'Top Up',
+                  time: 'Yesterday',
+                  value: '+ ${formatCurrency(125000)}',
+                ),
                 HomeLatestTransactionItem(
                     iconUrl: 'assets/ic_transaction_cat2.png',
                     title: 'Cashback',
                     time: 'Sep 11',
-                    value: '+ 22.000'),
+                    value: '+ ${formatCurrency(22000)}'),
                 HomeLatestTransactionItem(
                     iconUrl: 'assets/ic_transaction_cat3.png',
                     title: 'Withdraw',
                     time: 'Sep 2',
-                    value: '- 5.000'),
+                    value: '- ${formatCurrency(5000)}'),
                 HomeLatestTransactionItem(
                     iconUrl: 'assets/ic_transaction_cat4.png',
                     title: 'Transfer',
                     time: 'Aug 27',
-                    value: '- 123.500'),
+                    value: '- 123.500 ${formatCurrency(123500)}'),
                 HomeLatestTransactionItem(
                     iconUrl: 'assets/ic_transaction_cat5.png',
                     title: 'Electric',
                     time: 'Feb 18',
-                    value: '- 12.300.000'),
-                SizedBox(
+                    value: '- ${formatCurrency(12300000)}'),
+                const SizedBox(
                   height: 22,
                 )
               ],

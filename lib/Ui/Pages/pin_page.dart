@@ -1,3 +1,4 @@
+import 'package:bank_sha/Shared/shared_methods.dart';
 import 'package:bank_sha/Shared/theme.dart';
 import 'package:bank_sha/Ui/Widgets/Buttons.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +18,13 @@ class _PinPageState extends State<PinPage> {
         pinController.text = pinController.text + number;
       });
     }
-    if (pinController.text == '112233') {
-      Navigator.pop(context, true);
+    if (pinController.text.length == 6) {
+      if (pinController.text == '112233') {
+        Navigator.pop(context, true);
+      } else {
+        showCostomSnackBar(
+            context, 'PIN yang anda masukkan salah. Silakan coba lagi.');
+      }
     }
   }
 
