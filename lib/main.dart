@@ -1,3 +1,4 @@
+import 'package:bank_sha/Blocs/auth/auth_bloc.dart';
 import 'package:bank_sha/Shared/theme.dart';
 import 'package:bank_sha/Ui/Pages/home_page.dart';
 import 'package:bank_sha/Ui/Pages/onboarding_page.dart';
@@ -22,6 +23,7 @@ import 'package:bank_sha/Ui/Pages/transfer_amount_page.dart';
 import 'package:bank_sha/Ui/Pages/transfer_page.dart';
 import 'package:bank_sha/Ui/Pages/transfer_succes_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() => runApp(const MyApp());
 
@@ -30,48 +32,55 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner:
-          false, //digunakan untuk menghilangkan baner di kiri pojok
-      theme: ThemeData(
-        scaffoldBackgroundColor: lightBackgroundColor,
-        appBarTheme: AppBarTheme(
-            backgroundColor: lightBackgroundColor,
-            elevation: 0,
-            centerTitle: true,
-            iconTheme: IconThemeData(
-              color: blackColor,
-            ),
-            titleTextStyle: blackTetxtStyle.copyWith(
-              fontSize: 20,
-              fontWeight: semiBold,
-            )),
-      ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => AuthBloc(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner:
+            false, //digunakan untuk menghilangkan baner di kiri pojok
+        theme: ThemeData(
+          scaffoldBackgroundColor: lightBackgroundColor,
+          appBarTheme: AppBarTheme(
+              backgroundColor: lightBackgroundColor,
+              elevation: 0,
+              centerTitle: true,
+              iconTheme: IconThemeData(
+                color: blackColor,
+              ),
+              titleTextStyle: blackTetxtStyle.copyWith(
+                fontSize: 20,
+                fontWeight: semiBold,
+              )),
+        ),
 
-      routes: {
-        '/': (context) => const SplashPage(),
-        '/onboarding': (context) => const onboardingPage(),
-        '/sign_in': (context) => const SignInPage(),
-        '/sign_up': (context) => const SignUpPage(),
-        '/signUpUploadProfile': (context) => const SignUpUpSetProfilePage(),
-        '/SignUpUpSetKtpPage': (context) => const SignUpUpSetKtpPage(),
-        '/signUpSuccesPage': (context) => const signUpSuccesPage(),
-        '/homePage': (context) => const homePage(),
-        '/profilePage': (context) => const ProfilePage(),
-        '/PinPage': (context) => const PinPage(),
-        '/ProfileEdit': (context) => const ProfileEdit(),
-        '/ProfileEditPin': (context) => const ProfileEditPin(),
-        '/ProfileSucces': (context) => const ProfileSucces(),
-        '/TopUpPage': (context) => const TopUpPage(),
-        '/TopUpAmount': (context) => const TopUpAmount(),
-        '/TopUpSucces': (context) => const TopUpSucces(),
-        '/TransferPage': (context) => const TransferPage(),
-        '/TransferAmountPage': (context) => const TransferAmountPage(),
-        '/TransferSuccesPage': (context) => const TransferSuccesPage(),
-        '/ProviderPulsaPage': (context) => const ProviderPulsaPage(),
-        '/ProviderPaketPage': (context) => const ProviderPaketPage(),
-        '/ProviderSuccesPage': (context) => const ProviderSuccesPage(),
-      },
+        routes: {
+          '/': (context) => const SplashPage(),
+          '/onboarding': (context) => const onboardingPage(),
+          '/sign_in': (context) => const SignInPage(),
+          '/sign_up': (context) => const SignUpPage(),
+          '/signUpUploadProfile': (context) => const SignUpUpSetProfilePage(),
+          '/SignUpUpSetKtpPage': (context) => const SignUpUpSetKtpPage(),
+          '/signUpSuccesPage': (context) => const signUpSuccesPage(),
+          '/homePage': (context) => const homePage(),
+          '/profilePage': (context) => const ProfilePage(),
+          '/PinPage': (context) => const PinPage(),
+          '/ProfileEdit': (context) => const ProfileEdit(),
+          '/ProfileEditPin': (context) => const ProfileEditPin(),
+          '/ProfileSucces': (context) => const ProfileSucces(),
+          '/TopUpPage': (context) => const TopUpPage(),
+          '/TopUpAmount': (context) => const TopUpAmount(),
+          '/TopUpSucces': (context) => const TopUpSucces(),
+          '/TransferPage': (context) => const TransferPage(),
+          '/TransferAmountPage': (context) => const TransferAmountPage(),
+          '/TransferSuccesPage': (context) => const TransferSuccesPage(),
+          '/ProviderPulsaPage': (context) => const ProviderPulsaPage(),
+          '/ProviderPaketPage': (context) => const ProviderPaketPage(),
+          '/ProviderSuccesPage': (context) => const ProviderSuccesPage(),
+        },
+      ),
     );
   }
 }

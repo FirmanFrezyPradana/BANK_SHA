@@ -1,1 +1,74 @@
 https://documenter.getpostman.com/view/14470318/U16gNmjd#cf2bfba7-914c-44c7-8230-b5dedd5ffd1c
+
+authblock
+import 'package:bank_sha/Services/auth_service.dart';
+import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
+
+part 'auth_event.dart';
+part 'auth_state.dart';
+
+class AuthBloc extends Bloc<AuthEvent, AuthState> {
+  AuthBloc() : super(AuthInitial()) {
+    on<AuthEvent>((event, emit) async {
+      // TODO: implement event handler
+      if (event is AuthCheckEmail) {
+        try {
+          emit(AuthLoading());
+          final res = await AuthService().checkEmail(event.email);
+
+          if (res == false) {
+            emit(AuthCheckEmailSucces());
+          } else {
+            emit(const AuthFailed('Email Sudah Terpakai'));
+          }
+        } catch (e) {
+          emit(AuthFailed(e.toString()));
+        }
+      }
+    });
+  }
+}
+
+
+auth_event
+part of 'auth_bloc.dart';
+
+sealed class AuthEvent extends Equatable {
+  const AuthEvent();
+
+  @override
+  List<Object> get props => [];
+}
+
+class AuthCheckEmail extends AuthEvent {
+  final String email;
+  const AuthCheckEmail(this.email);
+
+  @override
+  List<Object> get props => [email];
+}
+
+
+auth_state
+part of 'auth_bloc.dart';
+
+sealed class AuthState extends Equatable {
+  const AuthState();
+
+  @override
+  List<Object> get props => [];
+}
+
+final class AuthInitial extends AuthState {}
+
+final class AuthLoading extends AuthState {}
+
+final class AuthFailed extends AuthState {
+  final String e;
+  const AuthFailed(this.e);
+  @override
+  List<Object> get props => [e];
+}
+
+final class AuthCheckEmailSucces extends AuthState {}
