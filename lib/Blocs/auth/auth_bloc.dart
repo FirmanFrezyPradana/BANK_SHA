@@ -1,6 +1,7 @@
 import 'package:bank_sha/Models/signUp_Form_Model.dart';
 import 'package:bank_sha/Models/user_model.dart';
 import 'package:bank_sha/Services/auth_service.dart';
+import 'package:bank_sha/Services/sign_in_form_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -29,6 +30,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         try {
           emit(AuthLoading());
           final user = await AuthService().register(event.data);
+          emit(AuthSucces(user));
+        } catch (e) {
+          emit(AuthFailed(e.toString()));
+        }
+      }
+      if (event is AuthLogin) {
+        try {
+          emit(AuthLoading());
+          final user = await AuthService().login(event.data);
           emit(AuthSucces(user));
         } catch (e) {
           emit(AuthFailed(e.toString()));

@@ -1,15 +1,51 @@
+import 'package:bank_sha/Blocs/auth/auth_bloc.dart';
+import 'package:bank_sha/Services/sign_in_form_model.dart';
+import 'package:bank_sha/Shared/shared_methods.dart';
 import 'package:bank_sha/Shared/theme.dart';
 import 'package:bank_sha/Ui/Widgets/Buttons.dart';
 import 'package:bank_sha/Ui/Widgets/forms.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SignInPage extends StatelessWidget {
+class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
+
+  @override
+  State<SignInPage> createState() => _SignInPageState();
+}
+
+class _SignInPageState extends State<SignInPage> {
+  final emailController = TextEditingController(text: '');
+  final passwordController = TextEditingController(text: '');
+
+  bool validate() {
+    if (emailController.text.isEmpty || passwordController.text.isEmpty) {
+      return false;
+    }
+    return true;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ListView(
+        body: BlocConsumer<AuthBloc, AuthState>(
+      listener: (context, state) {
+        // TODO: implement listener
+        if (state is AuthFailed) {
+          showCostomSnackBar(context, state.e);
+        }
+        if (state is AuthSucces) {
+          Navigator.pushNamedAndRemoveUntil(
+              context, '/homePage', (route) => false);
+        }
+      },
+      builder: (context, state) {
+        if (state is AuthLoading) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        return ListView(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           children: [
             Container(
@@ -45,7 +81,10 @@ class SignInPage extends StatelessWidget {
               child: Column(
                 children: [
                   // input email
-                  CostumComponenForms(title: 'Email Addres'),
+                  CostumComponenForms(
+                    title: 'Email Addres',
+                    controller: emailController,
+                  ),
                   const SizedBox(
                     height: 16,
                   ),
@@ -53,8 +92,9 @@ class SignInPage extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const CostumComponenForms(
+                      CostumComponenForms(
                         title: 'Password',
+                        controller: passwordController,
                         obscureText: true,
                       ),
                       const SizedBox(
@@ -73,8 +113,25 @@ class SignInPage extends StatelessWidget {
                       const SizedBox(
                         height: 30,
                       ),
-                      const CostomComponenButton(
+                      CostomComponenButton(
                         title: 'Sign In',
+                        onPressed: () {
+                          if (validate()) {
+                            context.read<AuthBloc>().add(
+                                  AuthLogin(
+                                    SignInFormModel(
+                                      email: emailController.text,
+                                      password: passwordController.text,
+                                    ),
+                                  ),
+                                );
+                          } else {
+                            showCostomSnackBar(
+                                context, 'seluruh field harus diisi');
+                          }
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, '/homePage', (route) => false);
+                        },
                       ),
                       const SizedBox(
                         height: 22,
@@ -92,6 +149,8 @@ class SignInPage extends StatelessWidget {
               // onPressed: Navigator.pushNamed,
             ),
           ],
-        ));
+        );
+      },
+    ));
   }
 }
