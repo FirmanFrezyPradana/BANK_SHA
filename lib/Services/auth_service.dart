@@ -1,7 +1,6 @@
 // berisi request yang diperlukan mengenai autentifikasi
 import 'dart:convert';
 
-import 'package:bank_sha/Blocs/auth/auth_bloc.dart';
 import 'package:bank_sha/Models/signUp_Form_Model.dart';
 import 'package:bank_sha/Models/user_model.dart';
 import 'package:bank_sha/Shared/shared_values.dart';
