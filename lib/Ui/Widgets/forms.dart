@@ -6,11 +6,13 @@ class CostumComponenForms extends StatelessWidget {
   final bool obscureText;
   final TextEditingController? controller;
   final bool isShowPlaceholder;
+  final TextInputType? keyboardType;
   const CostumComponenForms(
       {super.key,
       required this.title,
       this.obscureText = false,
       this.controller,
+      this.keyboardType,
       this.isShowPlaceholder = true});
 
   @override
@@ -32,6 +34,7 @@ class CostumComponenForms extends StatelessWidget {
         TextFormField(
           obscureText: obscureText,
           controller: controller,
+          keyboardType: keyboardType,
           decoration: InputDecoration(
               hintText: !isShowPlaceholder ? title : null,
               border: OutlineInputBorder(

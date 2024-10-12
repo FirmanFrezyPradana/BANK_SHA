@@ -1,8 +1,10 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:bank_sha/Models/signUp_Form_Model.dart';
 import 'package:bank_sha/Shared/shared_methods.dart';
 import 'package:bank_sha/Shared/theme.dart';
+import 'package:bank_sha/Ui/Pages/signUpSetKtpPage.dart';
 import 'package:bank_sha/Ui/Widgets/Buttons.dart';
 import 'package:bank_sha/Ui/Widgets/forms.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +12,6 @@ import 'package:image_picker/image_picker.dart';
 
 class SignUpUpSetProfilePage extends StatefulWidget {
   final SignupFormModel data;
-
   const SignUpUpSetProfilePage({
     super.key,
     required this.data,
@@ -22,7 +23,15 @@ class SignUpUpSetProfilePage extends StatefulWidget {
 
 class _SignUpUpSetProfilePageState extends State<SignUpUpSetProfilePage> {
   final pinController = TextEditingController(text: '');
-  XFile? SelectedImage;
+  XFile? selectedImage;
+
+  bool validate() {
+    if (pinController.text.length != 6) {
+      return false;
+    }
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,7 +76,7 @@ class _SignUpUpSetProfilePageState extends State<SignUpUpSetProfilePage> {
                   onTap: () async {
                     final image = await selectImage();
                     setState(() {
-                      SelectedImage = image;
+                      selectedImage = image;
                     });
                   },
                   child: Container(
@@ -76,16 +85,16 @@ class _SignUpUpSetProfilePageState extends State<SignUpUpSetProfilePage> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: lightBackgroundColor,
-                      image: SelectedImage == null
+                      image: selectedImage == null
                           ? null
                           : DecorationImage(
                               fit: BoxFit.cover,
                               image: FileImage(File(
-                                SelectedImage!.path,
+                                selectedImage!.path,
                               )),
                             ),
                     ),
-                    child: SelectedImage != null
+                    child: selectedImage != null
                         ? null
                         : Center(
                             child: Image.asset(
@@ -112,6 +121,7 @@ class _SignUpUpSetProfilePageState extends State<SignUpUpSetProfilePage> {
                   title: 'Set PIN (6 digit number)',
                   obscureText: true,
                   controller: pinController,
+                  keyboardType: TextInputType.number,
                 ),
                 const SizedBox(
                   height: 30,
@@ -119,7 +129,28 @@ class _SignUpUpSetProfilePageState extends State<SignUpUpSetProfilePage> {
                 CostomComponenButton(
                   title: 'Continue',
                   onPressed: () {
-                    Navigator.pushNamed(context, '/SignUpUpSetKtpPage');
+                    if (validate()) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SignUpUpSetKtpPage(
+                            data: widget.data.copyWith(
+                              pin: pinController.text,
+                              profile_picture: selectedImage == null
+                                  ? null
+                                  : 'data:image/png;base64,' +
+                                      base64Encode(
+                                        File(selectedImage!.path)
+                                            .readAsBytesSync(),
+                                      ),
+                            ),
+                          ),
+                        ),
+                      );
+                    } else {
+                      showCostomSnackBar(context, 'PIN Harus 6 dugut');
+                    }
+                    // Navigator.pushNamed(context, '/SignUpUpSetKtpPage');
                   },
                 )
               ],
