@@ -1,14 +1,30 @@
 import 'package:bank_sha/Models/signUp_Form_Model.dart';
+import 'package:bank_sha/Shared/shared_methods.dart';
 import 'package:bank_sha/Shared/theme.dart';
 import 'package:bank_sha/Ui/Widgets/Buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
-class SignUpUpSetKtpPage extends StatelessWidget {
+class SignUpUpSetKtpPage extends StatefulWidget {
   final SignupFormModel data;
   const SignUpUpSetKtpPage({
     super.key,
     required this.data,
   });
+
+  @override
+  State<SignUpUpSetKtpPage> createState() => _SignUpUpSetKtpPageState();
+}
+
+class _SignUpUpSetKtpPageState extends State<SignUpUpSetKtpPage> {
+  XFile? selectedImage;
+  bool validate() {
+    if (selectedImage == null) {
+      return false;
+    }
+    return true;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,16 +65,36 @@ class SignUpUpSetKtpPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                  width: 120,
-                  height: 120,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle, color: lightBackgroundColor),
-                  child: Center(
-                    child: Image.asset(
-                      'assets/ic_upload.png',
-                      width: 32,
+                GestureDetector(
+                  onTap: () async {
+                    final image = await selectImage();
+                    setState(() {
+                      selectedImage = image;
+                    });
+                  },
+                  child: Container(
+                    width: 120,
+                    height: 120,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: lightBackgroundColor,
+                      image: selectedImage == null
+                          ? null
+                          : DecorationImage(
+                              fit: BoxFit.cover,
+                              image: FileImage(File(
+                                selectedImage!.path,
+                              )),
+                            ),
                     ),
+                    child: selectedImage != null
+                        ? null
+                        : Center(
+                            child: Image.asset(
+                              'assets/ic_upload.png',
+                              width: 32,
+                            ),
+                          ),
                   ),
                 ),
                 const SizedBox(
@@ -76,7 +112,13 @@ class SignUpUpSetKtpPage extends StatelessWidget {
                 ),
                 CostomComponenButton(
                   title: 'Continue',
-                  onPressed: () {},
+                  onPressed: () {
+                    if (validate()) {
+                      
+                    } else {
+                      showCostomSnackBar(context, 'gambar tifdak boleh kosong');
+                    }
+                  },
                 )
               ],
             ),

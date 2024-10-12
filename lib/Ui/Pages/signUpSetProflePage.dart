@@ -79,7 +79,7 @@ class _SignUpUpSetProfilePageState extends State<SignUpUpSetProfilePage> {
                       selectedImage = image;
                     });
                   },
-                  child: Container(
+                  child: Container( 
                     width: 120,
                     height: 120,
                     decoration: BoxDecoration(

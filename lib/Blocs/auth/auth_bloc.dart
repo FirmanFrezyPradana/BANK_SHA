@@ -1,4 +1,6 @@
+import 'package:bank_sha/Models/signUp_Form_Model.dart';
 import 'package:bank_sha/Services/auth_service.dart';
+import 'package:bank_sha/Ui/Pages/signUpSetKtpPage.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
