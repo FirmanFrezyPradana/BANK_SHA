@@ -10,7 +10,7 @@ import 'package:bank_sha/Ui/Pages/profile_succes.dart';
 import 'package:bank_sha/Ui/Pages/provider_paket_page.dart';
 import 'package:bank_sha/Ui/Pages/provider_pulsa_page.dart';
 import 'package:bank_sha/Ui/Pages/provider_succes_page.dart';
-import 'package:bank_sha/Ui/Pages/signUpSetKtpPage.dart';
+// import 'package:bank_sha/Ui/Pages/signUpSetKtpPage.dart';
 import 'package:bank_sha/Ui/Pages/signUpSuccesPage.dart';
 import 'package:bank_sha/Ui/Pages/sign_in_page.dart';
 import 'package:bank_sha/Ui/Pages/sign_up_page.dart';
